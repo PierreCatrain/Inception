@@ -12,6 +12,8 @@ services:
       dockerfile: Dockerfile
     ports:
       - "3306:3306"
+    networks:
+      - network
     restart: always
 
   nginx:
@@ -25,6 +27,8 @@ services:
     ports:
       - "9000:9000"
       - "443:443"
+    networks:
+      - network
     restart: always
 
   wordpress:
@@ -40,7 +44,13 @@ services:
     ports:
       - "3306:3306"
       - "9000:9000"
+    networks:
+      - network
     restart: always
+
+networks:
+  network:
+    driver: bridge
 
 #volumes:
 #  mariadb_data:
