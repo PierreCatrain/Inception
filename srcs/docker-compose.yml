@@ -1,0 +1,57 @@
+version: '3'
+
+services:
+  mariadb:
+    container_name: mariadb
+    #volumes:
+    #  - mariadb_data:/var/lib/mysql
+    #  - mariadb_data:/home/logine/data
+    env_file: .env
+    build:
+      context: mariadb
+      dockerfile: Dockerfile
+    ports:
+      - "3306:3306"
+    restart: always
+
+  nginx:
+    container_name: nginx
+    #volumes:
+    #  - wordpress_data:/var/www/html
+    env_file: .env
+    build:
+      context: nginx
+      dockerfile: Dockerfile
+    ports:
+      - "9000:9000"
+      - "443:443"
+    restart: always
+
+  wordpress:
+    container_name: wordpress
+    #volumes:
+    #  - wordpress_data:/var/www/html
+    depends_on:
+      - mariadb
+    env_file: .env
+    build:
+      context: wordpress
+      dockerfile: Dockerfile
+    ports:
+      - "3306:3306"
+      - "9000:9000"
+    restart: always
+
+#volumes:
+#  mariadb_data:
+#    driver: local
+#    driver_opts:
+#      type: none
+#      device: /home/picatrai/data/mysql
+#     o: bind
+#  wordpress_data:
+#    driver: local
+#    driver_opts:
+#      type: none
+#      device: /home/picatrai/data/wordpress
+#      o: bind
