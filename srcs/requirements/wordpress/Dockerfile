@@ -28,6 +28,7 @@ RUN     mkdir /run/php
 
 WORKDIR /var/www/html/
 
+
 #RUN     rm /var/www/wordpress/wp-config-sample.php
 #COPY    conf/wp-config.php /var/www/wordpress/wp-config.php
 
@@ -42,5 +43,5 @@ WORKDIR /var/www/html/
 #EXPOSE 9000
 
 #RUN apt-get install -y dnsutils
-#CMD ["/usr/sbin/php-fpm7.4", "-F"]
+CMD ["/usr/sbin/php-fpm7.4", "-F"]
 
