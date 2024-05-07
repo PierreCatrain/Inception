@@ -15,18 +15,13 @@ RUN		chown -R root:root /var/www/wordpress
 
 COPY    conf/www.conf /etc/php/7.4/fpm/pool.d/www.conf
 
-ENV     SQL_USER=picatrai
-ENV     SQL_PASSWORD=abc123
-ENV     SQL_HOSTNAME=mariadb
-ENV     SQL_DATABASE=wordpress
-
 COPY    /tools/wordpress.sh /usr/local/bin/wordpress.sh
 RUN     chmod 755 /usr/local/bin/wordpress.sh
 RUN     ./usr/local/bin/wordpress.sh
 
 RUN     mkdir /run/php
 
-WORKDIR /var/www/html/
+WORKDIR /var/www/html
 
 
 #RUN     rm /var/www/wordpress/wp-config-sample.php
@@ -39,8 +34,6 @@ WORKDIR /var/www/html/
 
 
 
-
-#EXPOSE 9000
 
 #RUN apt-get install -y dnsutils
 CMD ["/usr/sbin/php-fpm7.4", "-F"]

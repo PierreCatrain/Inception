@@ -16,12 +16,12 @@ services:
 
   nginx:
     container_name: nginx
+    depends_on:
+      - wordpress
     volumes:
       - wordpress:/var/www/html
     networks:
       - inception
-    depends_on:
-      - wordpress
     build:
       context: requirements/nginx
       dockerfile: Dockerfile

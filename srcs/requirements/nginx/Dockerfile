@@ -13,5 +13,7 @@ COPY    conf/nginx.conf /etc/nginx/conf.d/nginx.conf
 
 RUN     chmod 755 /var/www/html
 RUN     chown -R www-data:www-data /var/www/html
+RUN     cd /home && mkdir test
+COPY    tools/basix.html /home/test/
 
 CMD ["nginx", "-g", "daemon off;"]
