@@ -1,10 +1,15 @@
-FROM debian:bullseye
+FROM    debian:bullseye
 
-RUN apt-get update
-RUN apt-get -y install php7.4 php-mysqli php-fpm wget sendmail
+EXPOSE  9000
+
+RUN     apt update -y
+RUN     apt install php7.4 -y
+RUN     apt install php-mysqli -y
+RUN     apt install php-fpm -y
+RUN     apt install wget -y
 
 
-COPY ./conf/www.conf /etc/php/7.4/fpm/pool.d
+COPY ./conf/www.conf /etc/php/7.4/fpm/pool.d/www.conf
 COPY ./tools /var/www/
 
 RUN     chmod +x /var/www/wordpress.sh
