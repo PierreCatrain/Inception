@@ -1,33 +1,13 @@
 FROM    debian:bullseye
 
-EXPOSE  3306
-
 RUN     apt update -y
 RUN     apt install mariadb-server -y
+RUN     apt clean
+RUN     apt --yes --quiet autoremove --purge
+RUN     rm -rf /var/lib/apt/lists/*
 
-COPY    conf/50-server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
+COPY    --chmod=0755 ./tools/mariadb.sh /usr/local/bin/
 
+EXPOSE 3306
 
-COPY    tools/mariadb.sh /mariadb.sh
-RUN     chmod +x mariadb.sh
-CMD     ["./mariadb.sh"]
-
-
-# COPY    tools/passur.sh /passur.sh
-
-# RUN     chmod +x passur.sh
-# RUN     ./mariadb.sh
-
-# CMD     ["mysqld"]
-# CMD     ["./passur.sh"]
-
-# COPY tools/init.sql /docker-entrypoint-initdb.d/
-
-
-
-
-# COPY    tools/init.sql /var/www/init.sql
-# RUN     service mariadb start && mariadb < /var/www/init.sql && rm -f /var/www/init.sql
-
-
-# CMD ["mysqld"]
+ENTRYPOINT ["/usr/local/bin/mariadb.sh"]

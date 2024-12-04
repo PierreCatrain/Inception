@@ -13,3 +13,8 @@ clean:
 	docker rmi -f $$(docker images -qa);\
 	docker volume rm $$(docker volume ls -q);\
 	docker network rm $$(docker network ls -q);\
+
+setup:
+	mkdir -p /home/picatrai/data/website
+	mkdir -p /home/picatrai/data/database
+	sudo bash ./srcs/requirements/tools/setup.sh

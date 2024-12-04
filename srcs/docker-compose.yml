@@ -1,5 +1,8 @@
+name: 'wp'
+
 services:
   mariadb:
+    image: mariadb
     container_name: mariadb
     networks:
       - inception
@@ -7,17 +10,19 @@ services:
       context: requirements/mariadb
       dockerfile: Dockerfile
     volumes:
-      - mariadb:/var/lib/mysql;
+      - database:/var/lib/mysql;
     env_file: .env
-    expose:
-      - "3306"
+    ports:
+      - "3306:3306"
+    restart: always
 
   nginx:
     container_name: nginx
+    image: nginx
     depends_on:
       - wordpress
     volumes:
-      - wordpress:/var/www/html
+      - website:/var/www/html
     networks:
       - inception
     build:
@@ -26,39 +31,40 @@ services:
     env_file: .env
     ports:
       - "443:443"
-    restart: on-failure
-
+    restart: always
+  
   wordpress:
     container_name: wordpress
+    image: wordpress
     depends_on:
       - mariadb
     env_file: .env
     volumes:
-      - wordpress:/var/www/html
+      - website:/var/www/html
     networks:
       - inception
     build:
       context: requirements/wordpress
       dockerfile: Dockerfile
-    restart: on-failure
-    expose:
-      - "9000"
+    ports:
+      - '9000:9000'
+    restart: always
 
 volumes:
-  wordpress:
+  website:
     driver: local
     driver_opts:
       type: 'none'
       o: 'bind'
-      device: '/home/picatrai/data/wordpress'
-  mariadb:
+      device: '/home/picatrai/data/website'
+  database:
     driver: local
     driver_opts:
       type: 'none'
       o: 'bind'
-      device: /home/picatrai/data/mariadb
-
+      device: /home/picatrai/data/database
 
 networks:
   inception:
+    name: inception
     driver: bridge
