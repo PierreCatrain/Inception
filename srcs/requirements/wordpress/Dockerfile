@@ -18,4 +18,4 @@ COPY --chmod=0755 /tools/entrypoint.sh /usr/local/bin
 
 EXPOSE 9000
 
-ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
+ENTRYPOINT ["./usr/local/bin/entrypoint.sh"]
