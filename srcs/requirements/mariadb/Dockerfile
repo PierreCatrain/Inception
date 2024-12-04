@@ -10,4 +10,5 @@ COPY    --chmod=0755 ./tools/mariadb.sh /usr/local/bin/
 
 EXPOSE 3306
 
+
 ENTRYPOINT ["/usr/local/bin/mariadb.sh"]
