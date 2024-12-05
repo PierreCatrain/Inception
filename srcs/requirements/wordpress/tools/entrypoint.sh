@@ -14,13 +14,13 @@ then
 else
     cp wp-config-sample.php wp-config.php
 
-    # wp config set --allow-root DB_HOST $DB_HOST --path="."
-    # wp config set --allow-root DB_NAME $DB_DATABASE --path="." 
-    # wp config set --allow-root DB_USER $DB_USER --path="."
-    # wp config set --allow-root DB_PASSWORD "${DB_USER_PASSWORD}" --path="." --quiet
-    # wp config set --allow-root table_prefix $DB_TABLE_PREFIX --path="."
-    # wp config set --allow-root WP_DEBUG false --path="." --raw
-    # wp config set --allow-root WP_DEBUG_LOG false --path="." --raw
+    wp config set --allow-root DB_HOST $DB_HOST --path="."
+    wp config set --allow-root DB_NAME $DB_DATABASE --path="." 
+    wp config set --allow-root DB_USER $DB_USER --path="."
+    wp config set --allow-root DB_PASSWORD "${DB_USER_PASSWORD}" --path="." --quiet
+    wp config set --allow-root table_prefix $DB_TABLE_PREFIX --path="."
+    wp config set --allow-root WP_DEBUG false --path="." --raw
+    wp config set --allow-root WP_DEBUG_LOG false --path="." --raw
     
     wp config shuffle-salts --allow-root
 

@@ -6,6 +6,7 @@ RUN apt install php -y
 RUN apt install php-fpm -y
 RUN apt install php-mysql -y
 RUN apt install mariadb-client -y
+RUN apt install sendmail -y
 RUN mkdir -p /run/php
 RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
 RUN chmod +x wp-cli.phar
