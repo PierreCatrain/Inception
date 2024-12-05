@@ -1,7 +1,7 @@
 all: build
 
 build: setup
-	docker compose -f ./srcs/docker-compose.yml --env-file ./srcs/.env up --build
+	docker compose -f ./srcs/docker-compose.yml --env-file ./srcs/.env up -d --build
 
 setup:
 	mkdir -p /home/picatrai/data/website
@@ -19,3 +19,5 @@ clean: down
 down:
 	docker compose -f ./srcs/docker-compose.yml down
 
+prune:
+	docker image prune -a --force
