@@ -4,6 +4,9 @@ all:
 down:
 	@docker compose -f ./srcs/docker-compose.yml down
 
+
+
+
 re:
 	@docker compose -f srcs/docker-compose.yml build
 

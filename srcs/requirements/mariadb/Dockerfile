@@ -13,7 +13,8 @@ RUN     chmod +x mariadb.sh
 CMD     ["./mariadb.sh"]
 
 
-# COPY    tools/passur.sh /passur.sh
+
+# COPY    tools/passur.sh /passur.sh tttest
 
 # RUN     chmod +x passur.sh
 # RUN     ./mariadb.sh
