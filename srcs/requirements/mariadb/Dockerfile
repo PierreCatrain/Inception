@@ -14,7 +14,7 @@ CMD     ["./mariadb.sh"]
 
 
 
-# COPY    tools/passur.sh /passur.sh tttest
+# COPY    tools/passur.sh /passur.sh
 
 # RUN     chmod +x passur.sh
 # RUN     ./mariadb.sh
