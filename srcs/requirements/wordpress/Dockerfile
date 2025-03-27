@@ -10,6 +10,7 @@ RUN     apt install wget -y
 RUN     apt install mariadb-client -y
 
 
+
 # COPY    conf/www.conf /etc/php/7.4/fpm/pool.d/www.conf
 # COPY    tools/wordpress.sh /var/www/wordpress.sh
 # # COPY    tools/wp-config.php /var/www/wordpress/wp-config.php
