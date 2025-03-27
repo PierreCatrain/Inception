@@ -23,5 +23,12 @@ RUN     chmod +x sed_conf.sh
 
 RUN     mkdir -p /run/php && chown -R www-data:www-data /run/php
 
+
+RUN     wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+RUN     chmod +x wp-cli.phar
+RUN     mv wp-cli.phar /usr/local/bin/wp
+
+
+
 CMD     ["/sed_conf.sh"]
 
