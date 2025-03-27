@@ -11,9 +11,17 @@ RUN     apt install mariadb-client -y
 
 
 
-# COPY    conf/www.conf /etc/php/7.4/fpm/pool.d/www.conf
-# COPY    tools/wordpress.sh /var/www/wordpress.sh
+RUN     wget https://fr.wordpress.org/wordpress-6.0-fr_FR.tar.gz -P /var/www
+RUN     cd /var/www && tar -xzf wordpress-6.0-fr_FR.tar.gz && rm wordpress-6.0-fr_FR.tar.gz
+RUN		chown -R root:root /var/www/wordpress
+
+
+COPY    conf/www.conf /etc/php/7.4/fpm/pool.d/www.conf
+
+
+RUN     wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
 # # COPY    tools/wp-config.php /var/www/wordpress/wp-config.php
+# COPY    tools/wordpress.sh /var/www/wordpress.sh
 
 # RUN     chmod +x /var/www/wordpress.sh
 
@@ -33,13 +41,31 @@ RUN     apt install mariadb-client -y
 
 
 
-COPY    conf/www.conf /etc/php/7.4/fpm/pool.d/www.conf
-COPY    tools/auto_config.sh /var/www/wordpress/conf/auto_config.sh
 
-RUN     mkdir -p /run/php && chown -R www-data:www-data /run/php
 
-RUN     wget https://fr.wordpress.org/wordpress-6.0-fr_FR.tar.gz -P /var/www
-RUN     cd /var/www && tar -xzf wordpress-6.0-fr_FR.tar.gz && rm wordpress-6.0-fr_FR.tar.gz
+
+
+
+
+
+
+
+# COPY    conf/www.conf /etc/php/7.4/fpm/pool.d/www.conf
+# COPY    tools/auto_config.sh /var/www/wordpress/conf/auto_config.sh
+
+# RUN     mkdir -p /run/php && chown -R www-data:www-data /run/php
+
+# RUN     wget https://fr.wordpress.org/wordpress-6.0-fr_FR.tar.gz -P /var/www
+# RUN     cd /var/www && tar -xzf wordpress-6.0-fr_FR.tar.gz && rm wordpress-6.0-fr_FR.tar.gz
+
+
+
+
+
+
+
+
+
 # RUN		chown -R root:root /var/www/wordpress
 
 
