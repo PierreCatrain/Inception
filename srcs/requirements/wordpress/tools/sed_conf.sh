@@ -1,6 +1,10 @@
 #!/bin/bash
 
-sleep 10
+until mysql -h ${DB_HOST} -u ${DB_USER} -p${DB_USER_PASSWORD} -e "SHOW DATABASES"; do
+  echo "Attente de la base de données MariaDB..."
+  sleep 5
+done
+echo "MariaDB est prêt, démarrage de l'installation de WordPress..."
 
 # on reconfigure a chaque fois ??
 sed -i "s/'votre_nom_de_bdd'/'${DB_DATABASE}'/" /var/www/wordpress/wp-config.php
@@ -9,17 +13,6 @@ sed -i "s/'votre_mdp_de_bdd'/'${DB_USER_PASSWORD}'/" /var/www/wordpress/wp-confi
 sed -i "s/'localhost'/'${DB_HOST}'/" /var/www/wordpress/wp-config.php
 sed -i "s/'wp_'/'${DB_TABLE_PREFIX}'/" /var/www/wordpress/wp-config.php
 
-# cat /var/www/wordpress/wp-config.php
-
-
-# wp user create \
-#         --allow-root \
-#         --dbname="$DB_DATABASE" \
-#         --dbuser="$WP_USER" \
-#         --dbpass="$WP_USER_PASSWORD" \
-#         --dbhost=mariadb:3306 --path="$WP_PATH"
-
-# echo "1"
 
 cd /var/www/wordpress
 
