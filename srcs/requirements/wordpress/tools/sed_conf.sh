@@ -37,4 +37,3 @@ echo "2"
 wp user create --allow-root "$WP_USER" "$WP_USER_EMAIL" --user_pass="$WP_USER_PASSWORD" --porcelain
 
 /usr/sbin/php-fpm7.4 -F
-
