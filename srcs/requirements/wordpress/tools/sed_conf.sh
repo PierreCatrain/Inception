@@ -15,6 +15,7 @@ sed -i "s/'wp_'/'${DB_TABLE_PREFIX}'/" /var/www/wordpress/wp-config.php
 
 cd /var/www/wordpress
 
+
 wp core install \
         --path="$WP_PATH" \
         --url="$DOMAIN_NAME" \
