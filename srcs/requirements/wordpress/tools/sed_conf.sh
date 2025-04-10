@@ -6,7 +6,6 @@ until mysql -h ${DB_HOST} -u ${DB_USER} -p${DB_USER_PASSWORD} -e "SHOW DATABASES
 done
 echo "MariaDB est prêt, démarrage de l'installation de WordPress..."
 
-# on reconfigure a chaque fois ??
 sed -i "s/'votre_nom_de_bdd'/'${DB_DATABASE}'/" /var/www/wordpress/wp-config.php
 sed -i "s/'votre_utilisateur_de_bdd'/'${DB_USER}'/" /var/www/wordpress/wp-config.php
 sed -i "s/'votre_mdp_de_bdd'/'${DB_USER_PASSWORD}'/" /var/www/wordpress/wp-config.php
@@ -24,8 +23,6 @@ wp core install \
         --admin_password="$WP_ADMIN_PASSWORD" \
         --admin_email="$WP_ADMIN_EMAIL" \
         --allow-root
-
-echo "2"
 
 wp user create --allow-root "$WP_USER" "$WP_USER_EMAIL" --user_pass="$WP_USER_PASSWORD" --porcelain
 
