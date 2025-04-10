@@ -3,7 +3,6 @@
 mysqld_safe --skip-networking &
 sleep 5
 
-echo "1"
 
 mysql -u root -p"$DB_ROOT_PASSWORD"<<EOF
 CREATE DATABASE IF NOT EXISTS \`${DB_DATABASE}\`;
@@ -12,8 +11,6 @@ GRANT ALL PRIVILEGES ON \`${DB_DATABASE}\`.* TO \`${DB_USER}\`@'%';
 ALTER USER 'root'@'localhost' IDENTIFIED BY '${DB_ROOT_PASSWORD}';
 FLUSH PRIVILEGES;
 EOF
-
-echo "2"
 
 mysqladmin -u root -p"${DB_ROOT_PASSWORD}" shutdown
 
